@@ -46,7 +46,7 @@ TrieNode *newNode() {
   TrieNode *node = (TrieNode*) malloc(sizeof(TrieNode));  // allocate memory
   if (node) {  // malloc might return null
     int i;
-    for (i = 0; i < NUM_CHILDREN; i++) {
+    for (i = 0; i < NUM_CHILDREN; ++i) {
       node->children[i] = NULL;
     }
     node->word = NULL;
@@ -65,7 +65,7 @@ void insert(TrieNode *root, char *str) {
   int length = strlen(str);  // str length
   int key;  // branch index
   int i;
-  for (i = 0; i < length; i++) {
+  for (i = 0; i < length; ++i) {
     key = index(str[i]);
     if (root->children[key] == NULL) {
       root->children[key] = newNode();
@@ -101,7 +101,7 @@ char *search(char *sequence, TrieNode *root) {
   if (current == NULL || sequence[0] != '#') {
     current = root;  // reset current
   }
-  for (i = 0; i < length; i++) {
+  for (i = 0; i < length; ++i) {
     if (sequence[i] == '#') {
       key = 8;
       if (current->children[key] == NULL) {
@@ -134,7 +134,7 @@ char *search(char *sequence, TrieNode *root) {
 */
 void freeTrie(TrieNode *root) {
   int i;
-  for (i = 0; i < NUM_CHILDREN; i++) {
+  for (i = 0; i < NUM_CHILDREN; ++i) {
     if (root->children[i] != NULL) {
       freeTrie(root->children[i]);
     }
